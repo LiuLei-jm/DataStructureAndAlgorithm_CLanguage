@@ -22,20 +22,6 @@ void createTree(TreeNode** T, char* data, int* index){
     }
 }
 
-void createTree1(TreeNode* T, char* data , int* index){
-    char ch;
-    ch = data[*index];
-    *index += 1;
-    if(ch == '#'){
-        T = NULL;
-    }
-    else{
-        T->data = ch;
-        createTree(&(T->lchild), data, index);
-        createTree(&(T->rchild), data, index);
-    }
-}
-
 void preOrder(TreeNode* T){
     if(T == NULL){
         return ;
@@ -72,8 +58,7 @@ void postOrder(TreeNode* T){
 int main(){
     TreeNode* T = (TreeNode*)malloc(sizeof(TreeNode));
     int index = 0;
-    // createTree(&T, "AB#D##CE###", &index);
-    createTree1(T, "ABD##E##CF##G##", &index);
+    createTree(&T, "AB#D##CE###", &index);
     
     printf("preOrder:\t");
     preOrder(T);
