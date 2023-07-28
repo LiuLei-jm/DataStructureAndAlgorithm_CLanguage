@@ -1,3 +1,6 @@
+/*
+  编写一个程序，使它读入被include语句修饰的一个文件并且输出这个文件
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
