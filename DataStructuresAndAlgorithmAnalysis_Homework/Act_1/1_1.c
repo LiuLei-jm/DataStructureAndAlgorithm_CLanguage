@@ -1,6 +1,6 @@
 /*
-** ÎÊÌâÃèÊö£º±àÐ´Ò»¸ö³ÌÐò½â¾öÑ¡ÔñÎÊÌâ¡£Áîk = N / 2¡£»­³ö±í¸ñÏÔÊ¾ÄãµÄ³ÌÐò¶ÔÓÚNÎª²»Í¬ÖµÊ±µÄÔËÐÐÊ±¼ä¡£
-**£¨ÉèÓÐÒ»×é N ¸öÊýÈ·¶¨ÆäÖÐµÚ k ¸ö×î´óÕß£¬³ÆÑ¡ÔñÎÊÌâ£¨selection problem£©£©
+** é—®é¢˜æè¿°ï¼šç¼–å†™ä¸€ä¸ªç¨‹åºè§£å†³é€‰æ‹©é—®é¢˜ã€‚ä»¤k = N / 2ã€‚ç”»å‡ºè¡¨æ ¼æ˜¾ç¤ºä½ çš„ç¨‹åºå¯¹äºŽNä¸ºä¸åŒå€¼æ—¶çš„è¿è¡Œæ—¶é—´ã€‚
+**ï¼ˆè®¾æœ‰ä¸€ç»„ N ä¸ªæ•°ç¡®å®šå…¶ä¸­ç¬¬ k ä¸ªæœ€å¤§è€…ï¼Œç§°é€‰æ‹©é—®é¢˜ï¼ˆselection problemï¼‰ï¼‰
 */
 
 #include <stdio.h>
