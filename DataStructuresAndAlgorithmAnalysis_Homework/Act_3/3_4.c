@@ -118,8 +118,7 @@ List Intersect(List L1, List L2)
             TmpCell2 = TmpCell2->Next;
         }
     }
-    PrintList(result);
-    DeleteList(result);
+    return result;
 }
 
 int main()
@@ -150,9 +149,13 @@ int main()
     pos = Find(5, list2);
     PrintList(list2);
 
-    Intersect(list1, list2);
+    List result;
+    result = MakeEmpty(result);
+    result = Intersect(list1, list2);
+    PrintList(result);
     DeleteList(list1);
     DeleteList(list2);
+    DeleteList(result);
     system("pause");
     return 0;
 }
