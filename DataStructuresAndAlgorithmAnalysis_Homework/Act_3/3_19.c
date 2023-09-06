@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef char* ElementType ;
+typedef char *ElementType;
 
 struct Node;
-typedef struct Node * PtrToNode;
+typedef struct Node *PtrToNode;
 typedef PtrToNode Stack;
 
 struct Node
@@ -20,6 +20,58 @@ void MakeEmpty(Stack S);
 void Push(ElementType X, Stack S);
 ElementType Top(Stack S);
 void Pop(Stack S);
+void FataError(char *S);
+void Error(char *S);
+int Calculator(int x, int y, char o);
+int IsOperator(char c);
+int PostfixCalcu(char* str, Stack S);
+
+int main()
+{
+    Stack S = CreateStack();
+    char *str = "6 5 2 3+8 * +3+ *";
+    PostfixCalcu(str, S);
+    DisposeStack(S);
+
+    system("Pause");
+    return 0;
+}
+
+int PostfixCalcu(char* str, Stack S){
+    char num[10];
+    int i = 0, j;
+    int x, y, sum = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] != ' ')
+        {
+            if (!IsOperator(str[i]))
+            {
+                j = 0;
+                while (str[i] != ' ' && !IsOperator(str[i]))
+                {
+                    num[j] = str[i];
+                    i++;
+                    j++;
+                }
+                num[j] = '\0';
+                Push(num, S);
+            }
+            if(IsOperator(str[i]))
+            {
+                y = atoi(Top(S));
+                Pop(S);
+                x = atoi(Top(S));
+                Pop(S);
+                sum = Calculator(x, y, str[i]);
+                sprintf(num, "%d", sum);
+                Push(num, S);
+            }
+        }
+        i++;
+    }
+    printf("sum = %d\n", sum);
+}
 
 void FataError(char *S)
 {
@@ -53,7 +105,7 @@ Stack CreateStack(void)
 void DisposeStack(Stack S)
 {
     MakeEmpty(S);
-    free(S);    
+    free(S);
 }
 
 void MakeEmpty(Stack S)
@@ -70,6 +122,7 @@ void MakeEmpty(Stack S)
 void Push(ElementType X, Stack S)
 {
     PtrToNode TmpCell;
+    int strLength = strlen(X) + 1;
 
     TmpCell = (PtrToNode)malloc(sizeof(struct Node));
     if (TmpCell == NULL)
@@ -78,8 +131,8 @@ void Push(ElementType X, Stack S)
     }
     else
     {
-        TmpCell->Element = (char*)malloc(sizeof(char)*strlen(X)+1);
-        strncpy(TmpCell->Element , X, strlen(X) + 1);
+        TmpCell->Element = (char *)malloc(sizeof(char) * strLength);
+        strncpy(TmpCell->Element, X, strLength);
         TmpCell->Next = S->Next;
         S->Next = TmpCell;
     }
@@ -107,6 +160,7 @@ void Pop(Stack S)
         free(FirstCell);
     }
 }
+
 int Calculator(int x, int y, char o)
 {
     switch (o)
@@ -128,46 +182,14 @@ int Calculator(int x, int y, char o)
     }
 }
 
-int main()
+int IsOperator(char c)
 {
-    Stack S = CreateStack();
-    char *str = "6 5 2 3 + 8 * + 3 + *";
-    char num[10];
-    int i = 0, j;
-    int x, y, sum = 0;
-    while (str[i] != '\0')
+    if (c == '+' || c == '-' || c == '*' || c == '/')
     {
-        if (str[i] != ' ')
-        {
-            if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/')
-            {
-                j = 0;
-                while (str[i] != ' ')
-                {
-                    num[j] = str[i];
-                    i++;
-                    j++;
-                }
-                num[j] = '\0';
-                Push(num, S);
-            }
-            else
-            {
-                y = atoi(Top(S));
-                Pop(S);
-                x = atoi(Top(S));
-                Pop(S);
-                sum = Calculator(x, y, str[i]);
-                sprintf(num, "%d", sum);
-                Push(num, S);
-            }
-        }
-        i++;
+        return 1;
     }
-
-    printf("sum = %d\n", sum);
-    DisposeStack(S);
-
-    system("Pause");
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
