@@ -65,7 +65,7 @@ struct Node
 static void FataError(char *S);
 void FataError(char *S)
 {
-    fputs("S\n", stderr);
+    fputs(S, stderr);
     exit(EXIT_FAILURE);
 }
 

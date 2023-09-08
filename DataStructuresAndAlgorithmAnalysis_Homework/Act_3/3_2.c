@@ -1,3 +1,6 @@
+/*
+给你一个链表L和另一个链表P，它们包含以升序排列的整数。操作PrintLots(L,P)将打印L中那些由P所指定的位置上的元素。
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

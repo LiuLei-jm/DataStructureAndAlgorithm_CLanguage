@@ -1,3 +1,6 @@
+/*
+给定两个排序的表L1和L2，只使用基本的表操作编写计算L1⋃L2的过程
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

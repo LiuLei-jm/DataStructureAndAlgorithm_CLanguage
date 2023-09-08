@@ -1,3 +1,6 @@
+/*
+ * 写出自调整表的数组实现。
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

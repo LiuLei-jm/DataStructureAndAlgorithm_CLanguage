@@ -1,3 +1,8 @@
+/*
+ * 编写一个程序将一个图读入邻接表
+ a.使用链表
+ b.使用游标
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

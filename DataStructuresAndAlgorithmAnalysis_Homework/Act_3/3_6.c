@@ -1,3 +1,6 @@
+/*
+编写将两个多项式相加的函数。不要毁坏输入数据。用一个链表实现
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

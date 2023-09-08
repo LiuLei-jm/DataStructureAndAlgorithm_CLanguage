@@ -1,3 +1,6 @@
+/*
+编写一个打印单链表的所有元素的程序
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

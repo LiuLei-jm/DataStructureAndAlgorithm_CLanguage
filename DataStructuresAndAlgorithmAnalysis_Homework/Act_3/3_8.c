@@ -1,3 +1,6 @@
+/*
+编写一个程序，输入一个多项式F(X),计算出(F(X))p。
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

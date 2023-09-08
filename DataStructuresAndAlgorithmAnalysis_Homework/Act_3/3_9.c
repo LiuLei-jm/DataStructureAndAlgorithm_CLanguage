@@ -1,3 +1,6 @@
+/*
+±àĞ´ÈÎÒâ¾«¶ÈÕûÊıÔËËã°ü¡£ÒªÊ¹ÓÃÀàËÆÓÚ¶àÏîÊ½ÔËËãµÄ·½·¨¡£¼ÆËãÔÚ2^4000ÄÚÊı×Ö0µ½9µÄ·Ö²¼¡£
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -202,7 +205,7 @@ int main()
     int base, exp;
     base = 2;
     exp = 123456;
-    // printf("è¾“å…¥åŸºæ•°å’ŒæŒ‡æ•°: ");
+    // printf("è¾“å…¥åŸºæ•°å’ŒæŒ‡æ•„1¤7: ");
     // scanf("%d %d", &base, &exp);
     list = BigNumber(base, exp);
     // printf("ans = ");

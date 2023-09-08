@@ -1,3 +1,6 @@
+/*
+ * 编写查找一个单链表中特定的程序。分别用递归和非递归方法实现，并比较它们的运行时间
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

@@ -1,3 +1,6 @@
+/*
+ * 编写一个非递归程序以O(N)时间反转单链表
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

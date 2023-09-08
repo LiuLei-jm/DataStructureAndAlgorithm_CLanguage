@@ -75,7 +75,7 @@ int PostfixCalcu(char* str, Stack S){
 
 void FataError(char *S)
 {
-    fputs("S\n", stderr);
+    fputs(S, stderr);
     exit(EXIT_FAILURE);
 }
 

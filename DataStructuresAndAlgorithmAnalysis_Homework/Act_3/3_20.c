@@ -386,7 +386,7 @@ ElementType FrontAndDeQueue(Queue Q)
 
 void FataError(char *s)
 {
-    fputs("s\n", stderr);
+    fputs(s, stderr);
     exit(EXIT_FAILURE);
 }
 

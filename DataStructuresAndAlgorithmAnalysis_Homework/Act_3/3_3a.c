@@ -1,3 +1,8 @@
+/*
+通过只调整指针（而不是数据)来交换两个相邻的元素，
+a.单链表
+b.双链表
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
