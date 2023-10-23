@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef int ElementType;
 
@@ -297,6 +298,8 @@ void PrintElement(ElementType X)
 void LeavePrint(AvlTree T)
 {
     Position TmpCell;
+    int m, n;
+    m = n = 0;
     Queue Q = CreateQueue(30);
     EnQueue(T, Q);
     while (!IsEmptyQueue(Q))
@@ -310,6 +313,12 @@ void LeavePrint(AvlTree T)
         if (TmpCell->Right != NULL)
         {
             EnQueue(TmpCell->Right, Q);
+        }
+        m++;
+        if(m == pow(2,n)){
+            putchar('\n');
+            n++;
+            m = 0;
         }
     }
     putchar('\n');
@@ -405,9 +414,9 @@ static int SuccQueue(int Value, Queue Q)
 
 void ShowTree(AvlTree T)
 {
-    printf("Perorder traversal: ");
-    PrintTree(T);
-    printf("\n");
-    printf("Sequence traversal: ");
+    // printf("Perorder traversal: ");
+    // PrintTree(T);
+    // printf("\n");
+    printf("Sequence traversal: \n");
     LeavePrint(T);
 }

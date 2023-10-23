@@ -3,7 +3,6 @@
 #include <time.h>
 #include <math.h>
 
-#define LENGTH 10000
 clock_t start, stop;
 
 struct TreeNode;
@@ -12,19 +11,15 @@ typedef struct TreeNode *SearchTree;
 typedef int ElementType;
 
 SearchTree MakeEmpty(SearchTree T);
-Position Find(ElementType X, SearchTree T);
+Position Find(ElementType Element, SearchTree T);
 Position FindMin(SearchTree T);
 Position FindMax(SearchTree T);
-SearchTree Insert(ElementType X, SearchTree T);
-SearchTree Delete(ElementType X, SearchTree T);
+SearchTree Insert(ElementType Element, SearchTree T);
+SearchTree Delete(ElementType Element, SearchTree T);
 ElementType Retrieve(Position P);
 void FatalError(char *S);
-void PrintTree(SearchTree T);
-void PrintElement(SearchTree T);
-void PrintSequence(SearchTree T);
-SearchTree MakeRandomTree1(int Lower, int Upper);
-SearchTree MakeRandomTree(int N);
-int RandInt(int Lower, int Upper);
+SearchTree GenTree(int Height, int *LastNode);
+SearchTree MinAvlTree(int H);
 
 struct TreeNode
 {
@@ -41,7 +36,7 @@ int IsFullQueue(Queue Q);
 Queue CreateQueue(int MaxElements);
 void DisposeQueue(Queue Q);
 void MakeEmptyQueue(Queue Q);
-void EnQueue(Position T, Queue Q);
+void EnQueue(Position P, Queue Q);
 Position FrontQueue(Queue Q);
 void DeQueue(Queue Q);
 Position FrontAndDeQueue(Queue Q);
@@ -56,21 +51,21 @@ struct QueueRecord
     Position *Array;
 };
 
+static void PrintSequence(SearchTree T);
+
 int main()
 {
     double duration;
-
-    SearchTree tree = NULL;
-    MakeEmpty(tree);
+    SearchTree tree;
     start = clock();
-    tree = MakeRandomTree(LENGTH);
+
+    tree = MinAvlTree(20);
+
     stop = clock();
     duration = (double)(stop - start) / CLK_TCK;
     printf("tick = %f\n", (double)(stop - start));
-    printf("duration = %6.2e\n", duration);
+    printf("duration = %6.23e\n", duration);
 
-    // PrintTree(tree);
-    // putchar('\n');
     PrintSequence(tree);
 
     system("Pause");
@@ -84,24 +79,18 @@ SearchTree MakeEmpty(SearchTree T)
         MakeEmpty(T->Left);
         MakeEmpty(T->Right);
         free(T);
-    }
+    };
     return NULL;
 }
 
-Position Find(ElementType X, SearchTree T)
+Position Find(ElementType Element, SearchTree T)
 {
     if (T == NULL)
-    {
         return NULL;
-    }
-    else if (X < T->Element)
-    {
-        T = Find(X, T->Left);
-    }
-    else if (X > T->Element)
-    {
-        T = Find(X, T->Right);
-    }
+    else if (Element < T->Element)
+        T = Find(Element, T->Left);
+    else if (Element > T->Element)
+        T = Find(Element, T->Right);
     else
         return T;
 }
@@ -111,7 +100,7 @@ Position FindMin(SearchTree T)
     if (T == NULL)
         return NULL;
     else if (T->Left == NULL)
-        return T;
+        return T->Left;
     else
         return FindMin(T->Left);
 }
@@ -120,44 +109,37 @@ Position FindMax(SearchTree T)
 {
     if (T == NULL)
         return NULL;
-    while (T->Right)
+    while (T->Right != NULL)
         T = T->Right;
     return T;
 }
 
-SearchTree Insert(ElementType X, SearchTree T)
+SearchTree Insert(ElementType Element, SearchTree T)
 {
     if (T == NULL)
     {
-        T = (SearchTree)malloc(sizeof(struct TreeNode));
+        T = malloc(sizeof(struct TreeNode));
         if (T == NULL)
-            FatalError("Out of space!!");
-        T->Element = X;
+            FatalError("Out of space!!!");
+        T->Element = Element;
         T->Left = T->Right = NULL;
     }
-    else if (X < T->Element)
-    {
-        T = Insert(X, T->Left);
-    }
-    else if (X > T->Element)
-    {
-        T = Insert(X, T->Right);
-    }
-    else
-    {
-        return T;
-    }
+    else if (Element < T->Element)
+        T = Insert(Element, T->Left);
+    else if (Element > T->Element)
+        T = Insert(Element, T->Right);
+    return T;
 }
 
-SearchTree Delete(ElementType X, SearchTree T)
+SearchTree Delete(ElementType Element, SearchTree T)
 {
     Position TmpCell;
     if (T == NULL)
         return NULL;
-    else if (X < T->Element)
-        T->Left = Delete(X, T->Left);
-    else if (X > T->Element)
-        T->Right = Delete(X, T->Right);
+    else if (Element < T->Element)
+        T = T->Left;
+    else if (Element > T->Element)
+        T = T->Right;
     else if (T->Left && T->Right)
     {
         TmpCell = FindMin(T->Right);
@@ -187,77 +169,26 @@ void FatalError(char *S)
     exit(EXIT_FAILURE);
 }
 
-SearchTree MakeRandomTree1(int Lower, int Upper)
+SearchTree GenTree(int Height, int *LastNode)
 {
     SearchTree T;
-    int RandomValue;
 
-    T = NULL;
-    if (Lower <= Upper)
+    if (Height >= 0)
     {
-        T = malloc(sizeof(struct TreeNode));
-        if (T != NULL)
-        {
-            T->Element = RandomValue = RandInt(Lower, Upper);
-            T->Left = MakeRandomTree1(Lower, RandomValue - 1);
-            T->Right = MakeRandomTree1(RandomValue + 1, Upper);
-        }
-        else
-            FatalError("Out of space!!!");
+        T = malloc(sizeof(*T));
+        T->Left = GenTree(Height - 1, LastNode);
+        T->Element = ++(*LastNode);
+        T->Right = GenTree(Height - 2, LastNode);
+        return T;
     }
-    return T;
+    else
+        return NULL;
 }
 
-SearchTree MakeRandomTree(int N)
+SearchTree MinAvlTree(int H)
 {
-    return MakeRandomTree1(1, N);
-}
-
-int RandInt(int Lower, int Upper)
-{
-    srand(time(NULL));
-    return ((double)rand() / RAND_MAX) * (double)(Upper - Lower + 1) + Lower;
-}
-
-void PrintTree(SearchTree T)
-{
-    if (T != NULL)
-    {
-        PrintTree(T->Left);
-        PrintElement(T);
-        PrintTree(T->Right);
-    }
-}
-
-void PrintElement(SearchTree T)
-{
-    printf("%d ", T->Element);
-}
-
-void PrintSequence(SearchTree T)
-{
-    Position TmpCell;
-    Position Previous = NULL;
-    int n = 1;
-    Queue Q = CreateQueue(LENGTH);
-    EnQueue(T, Q);
-    while (!IsEmptyQueue(Q))
-    {
-        TmpCell = FrontAndDeQueue(Q);
-        if (n == 1 ||  TmpCell->Element < Previous->Element)
-        {
-            printf("\n------------%d--------------\n", n);
-            n++;
-        }
-        printf("%d ", Retrieve(TmpCell));
-        if (TmpCell->Left != NULL)
-            EnQueue(TmpCell->Left, Q);
-        if (TmpCell->Right != NULL)
-            EnQueue(TmpCell->Right, Q);
-        Previous = TmpCell;
-    }
-    putchar('\n');
-    DisposeQueue(Q);
+    int LastNodeAssigned = 0;
+    return GenTree(H, &LastNodeAssigned);
 }
 
 int IsEmptyQueue(Queue Q)
@@ -267,17 +198,19 @@ int IsEmptyQueue(Queue Q)
 
 int IsFullQueue(Queue Q)
 {
-    return Q->Capacity == Q->Size;
+    return Q->Size == Q->Capacity;
 }
 
 Queue CreateQueue(int MaxElements)
 {
     Queue Q = (Queue)malloc(sizeof(struct QueueRecord));
     if (Q == NULL)
-        FatalError("Out of space!!!");
+        FatalError("Out of space!!");
     Q->Array = (Position *)malloc(sizeof(struct TreeNode) * MaxElements);
     if (Q->Array == NULL)
-        FatalError("Out of space!!!");
+    {
+        FatalError("Out of space!");
+    }
     MakeEmptyQueue(Q);
     Q->Capacity = MaxElements;
     return Q;
@@ -296,17 +229,15 @@ void MakeEmptyQueue(Queue Q)
     Q->Rear = 0;
 }
 
-void EnQueue(Position T, Queue Q)
+void EnQueue(Position P, Queue Q)
 {
     if (IsFullQueue(Q))
-    {
-        FatalError("Queue is full");
-    }
+        FatalError("Queue is Full!");
     else
     {
         Q->Size++;
         Q->Rear = SuccQueue(Q->Rear, Q);
-        Q->Array[Q->Rear] = T;
+        Q->Array[Q->Rear] = P;
     }
 }
 
@@ -318,7 +249,7 @@ Position FrontQueue(Queue Q)
 void DeQueue(Queue Q)
 {
     if (IsEmptyQueue(Q))
-        FatalError("Queue is empty!!!");
+        FatalError("Queue is empty!");
     else
     {
         Q->Size--;
@@ -328,15 +259,45 @@ void DeQueue(Queue Q)
 
 Position FrontAndDeQueue(Queue Q)
 {
-    Position TmpCell;
-    TmpCell = FrontQueue(Q);
+    Position Tmp;
+    Tmp = FrontQueue(Q);
     DeQueue(Q);
-    return TmpCell;
+    return Tmp;
 }
 
 static int SuccQueue(int Value, Queue Q)
 {
     if (++Value == Q->Capacity)
-        Value == 0;
+        Value = 0;
     return Value;
+}
+
+static void PrintSequence(SearchTree T)
+{
+    Position TmpCell;
+    Position Previous;
+    int n = 1;
+    Queue Q = CreateQueue(10000);
+    EnQueue(T, Q);
+    while (!IsEmptyQueue(Q))
+    {
+        TmpCell = FrontAndDeQueue(Q);
+        if(n == 1 || TmpCell->Element < Previous->Element){
+            printf("\n-----------%d---------\n",n);
+            n++;
+        }
+        printf("%d ", TmpCell->Element);
+        if (TmpCell->Left != NULL)
+        {
+            EnQueue(TmpCell->Left, Q);
+        }
+        if (TmpCell->Right != NULL)
+        {
+            EnQueue(TmpCell->Right, Q);
+        }
+        Previous = TmpCell;
+
+    }
+    putchar('\n');
+    DisposeQueue(Q);
 }
