@@ -1,5 +1,5 @@
 /*
-¸øÄãÒ»¸öÁ´±íLºÍÁíÒ»¸öÁ´±íP£¬ËüÃÇ°üº¬ÒÔÉıĞòÅÅÁĞµÄÕûÊı¡£²Ù×÷PrintLots(L,P)½«´òÓ¡LÖĞÄÇĞ©ÓÉPËùÖ¸¶¨µÄÎ»ÖÃÉÏµÄÔªËØ¡£
+ç»™ä½ ä¸€ä¸ªé“¾è¡¨Lå’Œå¦ä¸€ä¸ªé“¾è¡¨Pï¼Œå®ƒä»¬åŒ…å«ä»¥å‡åºæ’åˆ—çš„æ•´æ•°ã€‚æ“ä½œPrintLots(L,P)å°†æ‰“å°Lä¸­é‚£äº›ç”±Pæ‰€æŒ‡å®šçš„ä½ç½®ä¸Šçš„å…ƒç´ ã€‚
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +25,7 @@ List MakeEmpty(List L){
 void TailInsert(ElementType X, List L){
     PtrToNode tmp = (PtrToNode)malloc(sizeof(struct Node));
     if(tmp == NULL) {
-        printf("»ñÈ¡ÄÚ´æÊ§°Ü!\n");
+        printf("è·å–å†…å­˜å¤±è´¥!\n");
         return;
     }
     PtrToNode cur = L;

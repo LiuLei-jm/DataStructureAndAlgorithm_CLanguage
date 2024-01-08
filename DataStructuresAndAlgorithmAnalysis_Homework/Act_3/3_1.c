@@ -1,5 +1,5 @@
 /*
-编写一个打印单链表的所有元素的程序
+缂栧啓涓�涓墦鍗板崟閾捐〃鐨勬墍鏈夊厓绱犵殑绋嬪簭
 */
 #include <stdio.h>
 #include <stdlib.h>

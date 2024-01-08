@@ -1,6 +1,6 @@
 /*
-ջ�ĵ����ֲ���FindMin,�������ݽṹ����СԪ�أ����в������������µ�����ʱ�䶼��O(1)
-�����ֲ���DeleteMin,�ҳ���ɾ����СԪ��
+栈的第三种操作FindMin,返回数据结构的最小元素，所有操作在最坏的情况下的运行时间都是O(1)
+第四种操作DeleteMin,找出并删除最小元素
 */
 #include <stdio.h>
 #include <stdlib.h>

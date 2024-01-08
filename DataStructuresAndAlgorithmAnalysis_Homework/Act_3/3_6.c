@@ -1,13 +1,13 @@
 /*
-±àĞ´½«Á½¸ö¶àÏîÊ½Ïà¼ÓµÄº¯Êı¡£²»Òª»Ù»µÊäÈëÊı¾İ¡£ÓÃÒ»¸öÁ´±íÊµÏÖ
+ç¼–å†™å°†ä¸¤ä¸ªå¤šé¡¹å¼ç›¸åŠ çš„å‡½æ•°ã€‚ä¸è¦æ¯åè¾“å…¥æ•°æ®ã€‚ç”¨ä¸€ä¸ªé“¾è¡¨å®ç°
 */
 #include <stdio.h>
 #include <stdlib.h>
 
 struct PolyNode
 {
-    int coef;  // ÏµÊı
-    int expon; // Ö¸Êı
+    int coef;  // ç³»æ•°
+    int expon; // æŒ‡æ•°
     struct PolyNode *link;
 };
 typedef struct PolyNode *Polynomial;

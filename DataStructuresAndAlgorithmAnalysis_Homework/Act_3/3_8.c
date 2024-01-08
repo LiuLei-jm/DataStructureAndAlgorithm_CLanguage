@@ -1,5 +1,5 @@
 /*
-±àÐ´Ò»¸ö³ÌÐò£¬ÊäÈëÒ»¸ö¶àÏîÊ½F(X),¼ÆËã³ö(F(X))p¡£
+ç¼–å†™ä¸€ä¸ªç¨‹åºï¼Œè¾“å…¥ä¸€ä¸ªå¤šé¡¹å¼F(X),è®¡ç®—å‡º(F(X))pã€‚
 */
 #include <stdio.h>
 #include <stdlib.h>

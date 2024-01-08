@@ -1,5 +1,5 @@
 /*
-��д���⾫�������������Ҫʹ�������ڶ���ʽ����ķ�����������2^4000������0��9�ķֲ���
+编写任意精度整数运算包。要使用类似于多项式运算的方法。计算在2^4000内数字0到9的分布。
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -194,31 +194,4 @@ void CalculatorCount(char *str, int num[])
         ch++;
     }
     for(int i = 0; i < 10; i++){
-        printf("数字%d共有 %d 个，占比 %.2f %%\n",i, num[i], (double)num[i]/(double)strlen(str)*100);
-    }
-}
-
-int main()
-{
-    int num[10] = {0};
-    List list = MakeEmpty();
-    int base, exp;
-    base = 2;
-    exp = 123456;
-    // printf("输入基数和指敄1�7: ");
-    // scanf("%d %d", &base, &exp);
-    list = BigNumber(base, exp);
-    // printf("ans = ");
-    // ReversePrintList(list);
-
-    char *result = BigNumberToString(list);
-    printf("ans = ");
-    printf("%s\n", result);
-
-    CalculatorCount(result, num);
-
-    DeleteList(list);
-    free(result);
-    system("Pause");
-    return 0;
-}
+        printf("鏁板瓧%d鍏辨湁 %d 涓
