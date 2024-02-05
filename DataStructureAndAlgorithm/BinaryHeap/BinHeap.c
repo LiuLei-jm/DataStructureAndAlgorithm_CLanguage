@@ -120,7 +120,7 @@ void PrintPriorityQueue(PriorityQueue H){
     int LineNumber = 0;
     int LineFeed = pow(2, LineNumber);
     
-    for( int i = 1; i < H->Size; i++){
+    for( int i = 1; i <= H->Size; i++){
         printf("%d ", H->Elements[i]);
         if( i == LineFeed){
             putchar('\n');
