@@ -9,11 +9,13 @@ typedef int ElementType;
 clock_t start, stop;
 
 void QuickSort(ElementType A[], int N);
+void QuickSort1(ElementType A[], int N, int k);
 ElementType Median3(ElementType A[], int Left, int Right);
 void Qsort(ElementType A[], int Left, int Right);
 void Swap(ElementType *a, ElementType *b);
 void InsertionSort(ElementType A[], int N);
 void PrintList(ElementType A[], int N);
+void Qselect(ElementType A[], int k, int Left, int Right);
 
 int main()
 {
@@ -32,6 +34,18 @@ int main()
     printf("duration = %6.2e\n", duration);
     PrintList(nums, PrintSize);
 
+    for (int i = MaxSize, j = 0; i > 0; i--, j++)
+    {
+        nums[j] = i;
+    }
+    start = clock();
+    QuickSort1(nums, MaxSize, MaxSize - 1);
+    stop = clock();
+    duration = ((double)(stop - start)) / CLK_TCK;
+    printf("tick = %f\n", (double)(stop - start));
+    printf("duration = %6.2e\n", duration);
+    PrintList(nums, PrintSize);
+
     system("Pause");
     return 0;
 }
@@ -39,6 +53,11 @@ int main()
 void QuickSort(ElementType A[], int N)
 {
     Qsort(A, 0, N - 1);
+}
+
+void QuickSort1(ElementType A[], int N, int k)
+{
+    Qselect(A, k, 0, N - 1);
 }
 
 ElementType Median3(ElementType A[], int Left, int Right)
@@ -118,4 +137,38 @@ void PrintList(ElementType A[], int N)
         printf("%d ", A[i]);
     }
     putchar('\n');
+}
+
+void Qselect(ElementType A[], int k, int Left, int Right)
+{
+    int i, j;
+    ElementType Pivot;
+
+    if (Left + Cutoff <= Right)
+    {
+        Pivot = Median3(A, Left, Right);
+        i = Left;
+        j = Right - 1;
+        for (;;)
+        {
+            while (A[++i] < Pivot)
+            {
+            }
+            while (A[--j] > Pivot)
+            {
+            }
+            if (i < j)
+                Swap(&A[i], &A[j]);
+            else
+                break;
+        }
+        Swap(&A[i], &A[Right - 1]);
+
+        if (k <= i)
+            Qselect(A, k, Left, i - 1);
+        else if (k > i + 1)
+            Qselect(A, k, i + 1, Right);
+    }
+    else
+        InsertionSort(A + Left, Right - Left + 1);
 }
