@@ -1,4 +1,4 @@
-#ifndef _GraphAdjacencyList_H
+#ifndef _GraphAdjList_H
 
 typedef int Vertex;
 struct adjListNode;
@@ -15,7 +15,6 @@ void AddEdge(GraphAdjList *G, Vertex* vet1, Vertex* vet2);
 void RemoveEdge(GraphAdjList*G, Vertex* vet1, Vertex* vet2);
 void AddVertex(GraphAdjList *G, Vertex* vet);
 void RemoveVertex(GraphAdjList*G, Vertex *vet);
-void PrintGraph(GraphAdjList*G, int size);
 void FatalError(char *S);
 
 #endif

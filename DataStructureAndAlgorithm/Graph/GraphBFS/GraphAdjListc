@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include "GraphAdjList.h"
+
+#define MAX_SIZE 10
+
+struct adjListNode
+{
+    Vertex *vertex;
+    AdjListNode *next;
+};
+
+struct graphAdjList
+{
+    AdjListNode *heads[MAX_SIZE];
+    int size;
+};
+
+void AddEdgeHelper(AdjListNode *head, Vertex *vet)
+{
+    AdjListNode *node = malloc(sizeof(AdjListNode));
+    if (node == NULL)
+        FatalError("Out of space!!!");
+    node->vertex = vet;
+    node->next = head->next;
+    head->next = node;
+}
+
+void RemoveEdgeHelper(AdjListNode *head, Vertex *vet)
+{
+    AdjListNode *pre = head;
+    AdjListNode *cur = head->next;
+    while (cur && cur->vertex != vet)
+    {
+        pre = cur;
+        cur = cur->next;
+    }
+    if (cur == NULL)
+        return;
+    pre->next = cur->next;
+    free(cur);
+}
+
+GraphAdjList *NewGraphAdjList()
+{
+    GraphAdjList *G = malloc(sizeof(GraphAdjList));
+    if (G == NULL)
+        FatalError("Out of space!!!");
+    G->size = 0;
+    for (int i = 0; i < MAX_SIZE; i++)
+    {
+        G->heads[i] = NULL;
+    }
+    return G;
+}
+
+void DelGraphAdjList(GraphAdjList *G)
+{
+    AdjListNode *cur;
+    AdjListNode *next;
+    for (int i = 0; i < MAX_SIZE; i++)
+    {
+        cur = G->heads[i]->next;
+        while (cur)
+        {
+            next = cur->next;
+            free(cur);
+            cur = next;
+        }
+        free(G->heads[i]->vertex);
+        free(G->heads[i]);
+    }
+    free(G);
+}
+
+AdjListNode *FindNode(GraphAdjList *G, Vertex *vet)
+{
+    for (int i = 0; i < G->size; i++)
+    {
+        if (G->heads[i]->vertex == vet)
+            return G->heads[i]
+    }
+    return NULL;
+}
+
+void AddEdge(GraphAdjList *G, Vertex *vet1, Vertex *vet2);
+void RemoveEdge(GraphAdjList *G, Vertex *vet1, Vertex *vet2);
+void AddVertex(GraphAdjList *G, Vertex *vet);
+void RemoveVertex(GraphAdjList *G, Vertex *vet);
+void FatalError(char *S);
