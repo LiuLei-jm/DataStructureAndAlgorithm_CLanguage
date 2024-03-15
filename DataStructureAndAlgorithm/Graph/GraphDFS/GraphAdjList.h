@@ -15,8 +15,8 @@ void AddEdge(GraphAdjList *G, Vertex* vet1, Vertex* vet2);
 void RemoveEdge(GraphAdjList*G, Vertex* vet1, Vertex* vet2);
 void AddVertex(GraphAdjList *G, Vertex* vet);
 void RemoveVertex(GraphAdjList*G, Vertex *vet);
-void FatalError(char *S);
-void GraphBFS(GraphAdjList* G, Vertex * startVet, Vertex** res,  Vertex** visited );
+void GraphDFS(GraphAdjList* G, Vertex * startVet, Vertex** res,  int *resSize );
 void PrintGraph(GraphAdjList*G, int size);
+void FatalError(char *S);
 
 #endif
