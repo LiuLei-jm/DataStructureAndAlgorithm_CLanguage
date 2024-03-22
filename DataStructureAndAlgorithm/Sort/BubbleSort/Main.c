@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
+
+#define MaxSize 100000
+#define PrintSize 20
+
+typedef int ElementType;
+
+clock_t start, stop;
 
 void BubbleSort(int nums[], int size);
 void BubbleSortWithFlag(int nums[], int size);
@@ -13,6 +21,21 @@ int main()
     // BubbleSort(nums, 6);
     BubbleSortWithFlag(nums, 6);
     Traverse(nums, 6);
+
+    int nums1[MaxSize];
+    double duration;
+    for (int i = MaxSize, j = 0; i > 0; i--, j++)
+    {
+        nums1[j] = i;
+    }
+    Traverse(nums1, PrintSize);
+    start = clock();
+    BubbleSortWithFlag(nums1, MaxSize);
+    stop = clock();
+    duration = (stop - start) / CLK_TCK;
+    printf("Tick: %f\n", (double)(stop - start));
+    printf("duration: %6.2e\n", duration);
+    Traverse(nums1, PrintSize);
 
     system("Pause");
     return 0;

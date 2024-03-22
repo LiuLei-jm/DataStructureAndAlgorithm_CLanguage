@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+#define MaxSize 100000
+#define PrintSize 20
 
 #define LeftChild(i) (2 * (i) + 1)
+
+clock_t start, stop;
 
 typedef int ElementType;
 
@@ -16,8 +22,23 @@ int main()
     PrintList(nums, 7);
     HeapSort(nums, 7);
     PrintList(nums, 7);
+    int nums1[MaxSize];
+    double duration;
+    for (int i = MaxSize, j = 0; i > 0; i--, j++)
+    {
+        nums1[j] = i;
+    }
 
-     system("Pause");
+    PrintList(nums1, PrintSize);
+    start = clock();
+    HeapSort(nums1, MaxSize);
+    stop = clock();
+    duration = (stop - start) / CLK_TCK;
+    printf("Tick: %f\n", (double)(stop - start));
+    printf("duration: %6.2e\n", duration);
+    PrintList(nums1, PrintSize);
+
+    system("Pause");
     return 0;
 }
 
@@ -25,7 +46,6 @@ void PercDown(ElementType A[], int i, int N)
 {
     int Child;
     ElementType Tmp;
-
 
     for (Tmp = A[i]; LeftChild(i) < N; i = Child)
     {
@@ -45,7 +65,7 @@ void HeapSort(ElementType A[], int N)
     int i;
 
     for (i = N / 2; i >= 0; i--)
-         PercDown(A, i, N);
+        PercDown(A, i, N);
     for (i = N - 1; i > 0; i--)
     {
         Swap(&A[0], &A[i]);
