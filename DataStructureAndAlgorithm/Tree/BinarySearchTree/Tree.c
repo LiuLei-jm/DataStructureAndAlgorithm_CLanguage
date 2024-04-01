@@ -117,7 +117,6 @@ void FatalError(char *S)
     exit(EXIT_FAILURE);
 }
 
-
 void Error(char *S)
 {
     fputs(S, stderr);
