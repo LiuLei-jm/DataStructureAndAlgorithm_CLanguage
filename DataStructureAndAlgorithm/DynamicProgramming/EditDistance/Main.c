@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int editDistanceDP(char *s, char *t, int n, int m);
 int editDistanceDPComp(char *s, char *t, int n, int m);
@@ -10,8 +11,8 @@ int main()
     char *s = "bag";
     char *t = "pack";
     // int res = editDistanceDP(s, t, 3, 4);
-    int res = editDistanceDPComp(s, t, 3, 4);
-    printf("%d\n", res);
+    int res = editDistanceDPComp(s, t, strlen(s), strlen(t));
+    printf("将%s更改为%s最少需要编辑%d步。\n",s,t, res);
 
     return 0;
  }

@@ -6,8 +6,9 @@ int climbingStairsBacktrack(int n);
 
 int main()
 {
-    int res = climbingStairsBacktrack(3);
-    printf("%d\n", res);
+    int n = 4;
+    int res = climbingStairsBacktrack(n);
+    printf("爬%d阶楼梯共有%d种方案\n",n, res);
 
     system("Pause");
     return 0;

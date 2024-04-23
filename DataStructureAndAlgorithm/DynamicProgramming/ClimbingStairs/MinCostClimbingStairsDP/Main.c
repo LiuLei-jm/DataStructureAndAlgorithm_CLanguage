@@ -6,10 +6,10 @@ int minCostClimbingStairsDPComp(int cost[], int costSize);
 int myMin(int a, int b);
 
 int main(){
-    int cost[4] = {0, 1 ,10 ,1} ;
+    int cost[11] = {0, 1 ,10 ,1, 1, 1, 10, 1, 1, 10,1} ;
     int res;
-    res = minCostClimbingStairsDPComp(cost, 4);
-    printf("%d\n", res);
+    res = minCostClimbingStairsDPComp(cost, 11);
+    printf("爬完楼梯的最低代价为%d.\n", res);
 
     return 0;
 }

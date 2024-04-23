@@ -6,8 +6,9 @@ int climbingStairsConstraintDP(int n);
 int main()
 {
     int res;
-    res = climbingStairsConstraintDP(10);
-    printf("%d\n", res);
+    int n = 9;
+    res = climbingStairsConstraintDP(n);
+    printf("爬%d阶楼梯共有%d种方案\n",n, res);
 
     return 0;
 }

@@ -27,7 +27,7 @@ int main()
     // res = minPathSumDFS(grid, 3, 3);
     // res = minPathSumDFSMem(grid, mem, 3, 3);
     res = minPathSumDP(grid, MAX_SIZE, MAX_SIZE);
-    printf("%d\n", res);
+    printf("从左上角到右下角的最小路径和为%d.\n", res);
 
     return 0;
 }

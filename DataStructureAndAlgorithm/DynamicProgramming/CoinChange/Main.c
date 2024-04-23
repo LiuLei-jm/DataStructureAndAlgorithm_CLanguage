@@ -10,11 +10,12 @@ int myMin(int a, int b);
 int main()
 {
     int Coins[3] = {1, 2, 5};
+    int amt = 5;
     // int res = coinChangeDP(Coins, 11, 3);
     // int res = coinChangeDPComp(Coins, 11, 3);
     // int res = coinChangeIIDP(Coins, 5, 3);
-    int res = coinChangeIIDPComp(Coins, 5, 3);
-    printf("%d\n", res);
+    int res = coinChangeIIDPComp(Coins, amt, 3);
+    printf("凑到目标金额所需的最少硬币数量为%d\n", res);
 
     return 0;
 }

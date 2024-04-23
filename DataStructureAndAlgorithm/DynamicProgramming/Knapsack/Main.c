@@ -24,7 +24,7 @@ int main()
     // res = knapsackDFSMem(wgt, val, mem, 4, 50);
     // res = knapsackDP(wgt, val, 50, 4);
     res = knapsackDPComp(wgt, val, 50, 4);
-    printf("%d\n", res);
+    printf("不超过背包容量的最大物品价值为%d\n", res);
 
     return 0;
 }

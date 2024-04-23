@@ -12,7 +12,7 @@ int main()
     int res;
     // res = unboundedKnapsackDP(wgt, val, 50, 4);
     res = unboundedKnapsackDPComp(wgt, val, 50, 4);
-    printf("%d\n", res);
+    printf("不超过背包容量的最大物品价值为%d\n", res);
     return 0;
 }
 

@@ -5,8 +5,9 @@ int dfs(int i);
 int climbingStairsDFS(int n);
 
 int main(){
-    int res = climbingStairsDFS(5);
-    printf("%d\n", res);
+    int n = 9;
+    int res = climbingStairsDFS(n);
+    printf("爬%d阶楼梯共有%d种方案\n",n, res);
 
     return 0;
 }
